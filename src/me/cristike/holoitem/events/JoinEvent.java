@@ -56,6 +56,7 @@ public class JoinEvent implements Listener {
                     player.getInventory().getItemInMainHand().setAmount(amount);
                     Main.notMoving.add(player.getUniqueId());
                 }
+                loc = p.getLocation();
             }
         }.runTaskTimer(plugin, 0, 1);
     }
