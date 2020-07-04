@@ -1,0 +1,10 @@
+name: HoloItem
+version: '1.0'
+main: me.cristike.holoitem.Main
+author: Cristike
+api-version: 1.16
+commands:
+  hitoggle:
+    description: 'Toggle the holoitem for yourself'
+  hidisable:
+    description: 'Disable the feature'

@@ -1,0 +1,7 @@
+NoPerm: "&cYou don't have the permission do use this"
+ToggleOn: '&aYou have enabled the holo item'
+ToggleOff: '&cYou have disabled the holo item'
+Disabled: '&cAll the holos have been disabled'
+Enabled : '&cAll the holos have been enabled'
+Blacklist:
+  - BEDROCK
