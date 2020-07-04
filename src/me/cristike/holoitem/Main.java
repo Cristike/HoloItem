@@ -20,7 +20,7 @@ import java.util.UUID;
 public class Main extends JavaPlugin {
 
     public static HashMap<UUID, Entity> players = new HashMap<>();
-    public static HashMap<UUID, Location> previous = new HashMap<>();
+    public static HashMap<UUID, Double> previous = new HashMap<>();
     public static ArrayList<UUID> notMoving = new ArrayList<>();
     public static ArrayList<UUID> toggled = new ArrayList<>();
     public static boolean disabled = false;
@@ -35,26 +35,28 @@ public class Main extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-                for (Player p :Bukkit.getServer().getOnlinePlayers()) {
-                    Location previous = Main.previous.get(p.getUniqueId());
-                    Location current = p.getLocation();
-                    if (current == previous) {
-                        if (Main.players.containsKey(p.getUniqueId())) return;
-                        if (p.getInventory().getItemInMainHand() == null || p.getInventory().getItemInMainHand().getType() == Material.AIR) return;
-                        if (getConfig().getStringList("Blacklist").contains(p.getInventory().getItemInMainHand().getType().toString().toUpperCase())) return;
-                        ItemStack nitem = p.getInventory().getItemInMainHand();
-                        int amount = nitem.getAmount();
-                        nitem.setAmount(1);
-                        hm.create(p, p.getInventory().getItemInMainHand());
-                        hm.Move(p, Main.players.get(p.getUniqueId()));
-                        p.getInventory().getItemInMainHand().setAmount(amount);
-                        Main.notMoving.add(p.getUniqueId());
+                for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+                    if (p.isOnline()) {
+                        double previous = Main.previous.get(p.getUniqueId());
+                        double current = Main.previous.put(p.getUniqueId(), p.getLocation().getX() + p.getLocation().getY() + p.getLocation().getZ() + p.getLocation().getPitch() + p.getLocation().getYaw());
+                        if (current == previous) {
+                            if (Main.players.containsKey(p.getUniqueId())) return;
+                            if (p.getInventory().getItemInMainHand() == null || p.getInventory().getItemInMainHand().getType() == Material.AIR) return;
+                            if (getConfig().getStringList("Blacklist").contains(p.getInventory().getItemInMainHand().getType().toString().toUpperCase())) return;
+                            ItemStack nitem = p.getInventory().getItemInMainHand();
+                            int amount = nitem.getAmount();
+                            nitem.setAmount(1);
+                            hm.create(p, p.getInventory().getItemInMainHand());
+                            hm.Move(p, Main.players.get(p.getUniqueId()));
+                            p.getInventory().getItemInMainHand().setAmount(amount);
+                            Main.notMoving.add(p.getUniqueId());
+                        }
+                        Main.previous.remove(p.getUniqueId());
+                        Main.previous.put(p.getUniqueId(), current);
                     }
-                    Main.previous.remove(p.getUniqueId());
-                    Main.previous.put(p.getUniqueId(), current);
                 }
             }
-        }.runTaskTimer(this, 0, 2);
+        }.runTaskTimer(this, 0, 20);
     }
 
     @Override

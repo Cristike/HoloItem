@@ -18,6 +18,6 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onJoin (PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        Main.previous.put(p.getUniqueId(), p.getLocation());
+        Main.previous.put(p.getUniqueId(), p.getLocation().getX() + p.getLocation().getY() + p.getLocation().getZ() + p.getLocation().getPitch() + p.getLocation().getYaw());
     }
 }
