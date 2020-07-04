@@ -52,6 +52,9 @@ public class HoloManager {
                     cancel();
                     return;
                 }
+                if (((ArmorStand) entity).isVisible()) {
+                    ((ArmorStand) entity).setVisible(false);
+                }
                 if (!Main.notMoving.contains(player.getUniqueId()) || Main.toggled.contains(player.getUniqueId())) {
                     remove(player, item, entity);
                     cancel();
