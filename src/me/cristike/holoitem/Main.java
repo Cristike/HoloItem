@@ -24,13 +24,13 @@ public class Main extends JavaPlugin {
     public static ArrayList<UUID> notMoving = new ArrayList<>();
     public static ArrayList<UUID> toggled = new ArrayList<>();
     public static boolean disabled = false;
-    private HoloManager hm = new HoloManager();
 
     @Override
     public void onEnable() {
         loadCommands();
         loadEvents();
         saveDefaultConfig();
+        HoloManager hm = new HoloManager();
         Bukkit.getServer().getConsoleSender().sendMessage(c("&7[&bHoloItem&7] &fThe plugin has been &aenabled"));
         new BukkitRunnable() {
             @Override
