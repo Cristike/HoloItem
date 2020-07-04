@@ -43,7 +43,7 @@ public class JoinEvent implements Listener {
                     Main.notMoving.add(player.getUniqueId());
                 }
                 if (player.getLocation() == loc) {
-                    if (Main.players.containsKey(player.getUniqueId()));
+                    if (Main.players.containsKey(player.getUniqueId())) return;
                     if (p.getInventory().getItemInMainHand() == null || p.getInventory().getItemInMainHand().getType() == Material.AIR) return;
                     if (plugin.getConfig().getStringList("Blacklist").contains(p.getInventory().getItemInMainHand().getType().toString().toUpperCase())) return;
                     ItemStack nitem = player.getInventory().getItemInMainHand();
