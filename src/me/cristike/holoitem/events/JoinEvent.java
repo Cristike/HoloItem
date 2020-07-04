@@ -32,8 +32,18 @@ public class JoinEvent implements Listener {
                 if (initial[0]) {
                     initial[0] = false;
                     loc = player.getLocation();
+                    if (p.getInventory().getItemInMainHand() == null || p.getInventory().getItemInMainHand().getType() == Material.AIR) return;
+                    if (plugin.getConfig().getStringList("Blacklist").contains(p.getInventory().getItemInMainHand().getType().toString().toUpperCase())) return;
+                    ItemStack nitem = player.getInventory().getItemInMainHand();
+                    int amount = nitem.getAmount();
+                    nitem.setAmount(1);
+                    hm.create(player, player.getInventory().getItemInMainHand());
+                    hm.Move(player, Main.players.get(player.getUniqueId()));
+                    player.getInventory().getItemInMainHand().setAmount(amount);
+                    Main.notMoving.add(player.getUniqueId());
                 }
                 if (player.getLocation() == loc) {
+                    if (Main.players.containsKey(player.getUniqueId()));
                     if (p.getInventory().getItemInMainHand() == null || p.getInventory().getItemInMainHand().getType() == Material.AIR) return;
                     if (plugin.getConfig().getStringList("Blacklist").contains(p.getInventory().getItemInMainHand().getType().toString().toUpperCase())) return;
                     ItemStack nitem = player.getInventory().getItemInMainHand();
