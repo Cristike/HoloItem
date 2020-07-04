@@ -19,17 +19,6 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onJoin (PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        if (Main.toggled.contains(p.getUniqueId())) return;
-        if (Main.disabled) return;
-        Main.notMoving.add(p.getUniqueId());
-        if (p.getInventory().getItemInMainHand() == null || p.getInventory().getItemInMainHand().getType() == Material.AIR) return;
-        if (plugin.getConfig().getStringList("Blacklist").contains(p.getInventory().getItemInMainHand().getType().toString().toUpperCase())) return;
-        ItemStack nitem = p.getInventory().getItemInMainHand();
-        int amount = nitem.getAmount();
-        nitem.setAmount(1);
-        hm.create(p, p.getInventory().getItemInMainHand());
-        hm.Move(p, Main.players.get(p.getUniqueId()));
-        p.getInventory().getItemInMainHand().setAmount(amount);
         final boolean[] initial = {true};
         new BukkitRunnable() {
             @Override
@@ -45,13 +34,8 @@ public class JoinEvent implements Listener {
                     loc = player.getLocation();
                 }
                 if (player.getLocation() == loc) {
-                    player.sendMessage("0");
-                    if (Main.players.containsKey(player.getUniqueId())) return;
-                    player.sendMessage("1");
                     if (p.getInventory().getItemInMainHand() == null || p.getInventory().getItemInMainHand().getType() == Material.AIR) return;
-                    player.sendMessage("2");
                     if (plugin.getConfig().getStringList("Blacklist").contains(p.getInventory().getItemInMainHand().getType().toString().toUpperCase())) return;
-                    player.sendMessage("3");
                     ItemStack nitem = player.getInventory().getItemInMainHand();
                     int amount = nitem.getAmount();
                     nitem.setAmount(1);
