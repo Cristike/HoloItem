@@ -19,10 +19,13 @@ public class HoloManager {
         vector.setX(Math.sin(pitch) * Math.cos(yaw));
         vector.setY(Math.cos(pitch));
         vector.setZ(Math.sin(pitch) * Math.sin(yaw));
+        Location firstloc = p.getLocation();
+        firstloc.setY(firstloc.getY()-3);
         Location loc = p.getLocation().add(vector);
         loc.setY(loc.getY()-1);
-        ArmorStand as = loc.getWorld().spawn(loc, ArmorStand.class);
+        ArmorStand as = loc.getWorld().spawn(firstloc, ArmorStand.class);
         as.setVisible(false);
+        as.teleport(loc);
         as.setArms(false);
         as.setGravity(false);
         as.setInvulnerable(true);
