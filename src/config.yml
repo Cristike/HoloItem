@@ -1,3 +1,4 @@
+#HoloItem
 NoPerm: "&cYou don't have the permission do use this"
 ToggleOn: '&aYou have enabled the holo item'
 ToggleOff: '&cYou have disabled the holo item'
@@ -5,3 +6,17 @@ Disabled: '&cAll the holos have been disabled'
 Enabled : '&cAll the holos have been enabled'
 Blacklist:
   - BEDROCK
+
+#Particles
+InsufficientArguments: '&cinsufficient arguments'
+InvalidType: '&cThis is not a valid particle type'
+InvalidPlayer: '&cThis player does not exist'
+SpecifyColor: '&cYou need to specify a color for this particle type'
+InvalidColor: '&cThis color type does not exist'
+CantPutColor: "&cThis type of particle can't be colored"
+ParticleSetted: '&aYou have setted the particles for this player'
+AlreadySetted: '&cThis player has already particles'
+ParticlesRemoved: '&aYou have removed the particles of this player'
+UnknownCommand: '&cThis is not a valid command syntax'
+NoParticles: "This player doesen't have any particles"
+afktime: 15

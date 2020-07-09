@@ -1,10 +1,15 @@
-name: HoloItem
+name: HOTW
 version: '1.0'
-main: me.cristike.holoitem.Main
+main: me.cristike.hotw.Main
 author: Cristike
 api-version: 1.16
+depend: [LibsDisguises]
 commands:
   hitoggle:
     description: 'Toggle the holoitem for yourself'
   hidisable:
     description: 'Disable the feature'
+  particleset:
+    description: 'Set particles'
+  particleremove:
+    description: 'Remove particles'
